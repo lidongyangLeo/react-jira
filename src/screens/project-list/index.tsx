@@ -1,6 +1,6 @@
 import qs from "qs";
 import React, { useEffect, useState } from "react";
-import { cleanObject, useMount } from "utils";
+import { cleanObject, useDebounce, useMount } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 
@@ -13,18 +13,20 @@ export const ProjectListScreen = () => {
     personId: "",
   });
 
+  const debouncedParam = useDebounce(param, 2000);
   const [list, setList] = useState([]);
 
+  console.log(debouncedParam);
   useEffect(() => {
-    fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(
-      async (response) => {
-        if (response.ok) {
-          setList(await response.json());
-        }
+    fetch(
+      `${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`
+    ).then(async (response) => {
+      if (response.ok) {
+        setList(await response.json());
       }
-    );
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [param]);
+  }, [debouncedParam]);
 
   useMount(() => {
     fetch(`${apiUrl}/users`).then(async (response) => {
