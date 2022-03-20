@@ -1,21 +1,8 @@
 import { useAuth } from "context/auth-context";
 import React, { FormEvent } from "react";
 
-const apiUrl = process.env.REACT_APP_API_URL;
 export const LoginScreen = () => {
-  const { login, register, logout, user } = useAuth();
-  // const login = (param: { username: string; password: string }) => {
-  //   fetch(`${apiUrl}/login`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(param),
-  //   }).then(async (response) => {
-  //     if (response.ok) {
-  //     }
-  //   });
-  // };
+  const { login } = useAuth();
 
   const handleSumbit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,7 +15,6 @@ export const LoginScreen = () => {
   };
   return (
     <form onSubmit={handleSumbit}>
-      {user && <div>登陆成功，用户名: {user.name}</div>}
       <div>
         <label htmlFor="userName">用户名</label>
         <input type="text" id={"username"} />

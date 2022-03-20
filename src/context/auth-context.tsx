@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // point free (user) => setUser(user)
   const login = (form: AuthForm) => auth.login(form).then(setUser);
 
-  const register = (form: AuthForm) => auth.resgiter(form).then(setUser);
+  const register = (form: AuthForm) => auth.register(form).then(setUser);
   const logout = () => auth.logout().then(() => setUser(null));
 
   return (

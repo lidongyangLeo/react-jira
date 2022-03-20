@@ -28,8 +28,8 @@ export const login = (data: { username: string; password: string }) => {
   });
 };
 
-export const resgiter = (data: { username: string; password: string }) => {
-  return fetch(`${apiUrl}/resgiter`, {
+export const register = (data: { username: string; password: string }) => {
+  return fetch(`${apiUrl}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
